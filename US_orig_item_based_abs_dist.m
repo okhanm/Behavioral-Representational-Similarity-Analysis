@@ -13,7 +13,7 @@ max_year = [40,	20,	20,	20,	20,	10,	10,	10,	10, 7, 7, 7, 7,	5, 5, 2, 2,	2, 7, 1,
 % excluding participants
 included_sub = data(data.exclude == 0,:);
 
-% extracting ratings from each portion for all items and converting them into array
+% extracting ratings from each portion for all items and converting them into an array
 shame_Penn_all = table2array (included_sub (:, 16:67));
 shame_Tang_all = table2array (included_sub (:, 68:118));
 devalue_Penn_all = table2array (included_sub (:, 119:170));
@@ -56,7 +56,7 @@ m_year_Tang_orig = m_year_Tang_all(:,1:26);
 
 %% Computing RDMs
 
-% all conditions are included, only original items
+% All conditions are included, only original items
 condition_list = {m_shame_Penn_orig, m_devalue_Penn_orig, m_wrong_Penn_orig, m_year_Penn_orig, m_shame_Tang_orig, m_devalue_Tang_orig, m_wrong_Tang_orig, m_year_Tang_orig};
 
 for ii = 1:length(condition_list)
@@ -98,12 +98,13 @@ for ii = 1:2
         imagesc(all_dist(:,:,i));
         axis equal
         axis tight
-        title(plot_names{i}); % sub titles
+        title(plot_names{i}); % subtitles
         sgtitle(global_title(ii))
     end
 end
-%% transforming matrices into vector by taking lower triangle
-% For penn   
+
+%% transforming matrices into vectors by taking the lower triangle
+% For Penn   
 for i = 1:4
     
     temp_lower_trig = tril(all_dist_penn(:,:,i), -1);
